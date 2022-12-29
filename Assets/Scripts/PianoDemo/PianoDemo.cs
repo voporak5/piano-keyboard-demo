@@ -4,12 +4,10 @@ namespace CCintron.PianoDemo
 {
     public class PianoDemo : MonoBehaviour
     {
-        [SerializeField] GameObject soundPrefab;
-
         void Awake()
         {
             SoundLibrary mSoundLibrary = new SoundLibrary();
-            SoundManager mSoundManager = new SoundManager(soundPrefab);
+            SoundManager mSoundManager = new SoundManager();
         }
 
         private void Update()

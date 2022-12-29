@@ -16,7 +16,7 @@ namespace CCintron.Pooling
         //Stack so data can easily grow/shrink
         private Stack<NodeBase> reserve;
 
-        public PoolManager(/*int initialSize = 5, */int deltaGrow = 2)
+        public PoolManager(int initialSize = 5, int deltaGrow = 2)
         {
             this.deltaGrow = deltaGrow;
             totalNodes = 0;
@@ -25,7 +25,7 @@ namespace CCintron.Pooling
             active = new Dictionary<int, NodeBase>();
             reserve = new Stack<NodeBase>();
 
-            //privFillReservedPool(initialSize);
+            privFillReservedPool(initialSize);
         }
 
         public NodeBase add()
@@ -72,7 +72,7 @@ namespace CCintron.Pooling
             return node;
         }
 
-        protected void privFillReservedPool(int count)
+        private void privFillReservedPool(int count)
         {
             totalNodes += count;
             numReserved += count;

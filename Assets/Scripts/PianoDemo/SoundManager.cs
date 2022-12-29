@@ -11,12 +11,10 @@ namespace CCintron.PianoDemo
 
         private GameObject prefab;
 
-        public SoundManager(GameObject prefab, int initialSize = 5, int deltaGrow = 2) 
-            : base(/*initialSize,*/deltaGrow)
+        public SoundManager(int initialSize = 5, int deltaGrow = 2) 
+            : base(initialSize, deltaGrow)
         {
-            this.prefab = prefab;
             instance = this;
-            privFillReservedPool(initialSize);
         }
 
         public static void Add(SoundEffectType soundEffectType)
@@ -32,6 +30,8 @@ namespace CCintron.PianoDemo
 
         protected override NodeBase derivedCreateNode()
         {
+            if(prefab == null) prefab = (GameObject)Resources.Load("Prefabs/SoundEffect");
+
             NodeBase node = Object.Instantiate(prefab).GetComponent<NodeBase>();
             return node;
         }
