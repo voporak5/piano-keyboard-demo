@@ -19,16 +19,16 @@ namespace CCintron.PianoDemo
 
         public static void Add(SoundEffectType soundEffectType)
         {
-            SoundEffect soundEffect = (SoundEffect)instance.add();
+            SoundEffect soundEffect = (SoundEffect)instance.Add();
             soundEffect.Set(soundEffectType);
         }
 
         public static void Remove(SoundEffect soundEffect)
         {
-            instance.remove(soundEffect);
+            instance.Remove((NodeBase)soundEffect);
         }
 
-        protected override NodeBase derivedCreateNode()
+        protected override NodeBase DerivedCreateNode()
         {
             if(prefab == null) prefab = (GameObject)Resources.Load("Prefabs/SoundEffect");
 
@@ -36,7 +36,7 @@ namespace CCintron.PianoDemo
             return node;
         }
 
-        protected override void derivedWash(NodeBase node)
+        protected override void DerivedWash(NodeBase node)
         {
             SoundEffect sound = (SoundEffect)node;
             sound.Wash();

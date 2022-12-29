@@ -25,12 +25,12 @@ namespace CCintron.Pooling
             active = new Dictionary<int, NodeBase>();
             reserve = new Stack<NodeBase>();
 
-            privFillReservedPool(initialSize);
+            PrivFillReservedPool(initialSize);
         }
 
-        public NodeBase add()
+        public NodeBase Add()
         {
-            NodeBase pNodeBase = privAdd();            
+            NodeBase pNodeBase = PrivAdd();            
 
             // copy to active
             active[pNodeBase.GetHashCode()] = pNodeBase;
@@ -38,7 +38,7 @@ namespace CCintron.Pooling
             return pNodeBase;
         }
 
-        public void remove(NodeBase node)
+        public void Remove(NodeBase node)
         {
             active.Remove(node.GetHashCode());
 
@@ -50,20 +50,20 @@ namespace CCintron.Pooling
             numReserved++;
         }
 
-        private NodeBase privAdd()
+        private NodeBase PrivAdd()
         {
             // Are there any nodes on the Reserve list?
             if (reserve.Count == 0)
             {
                 // refill the reserve list by the DeltaGrow
-                privFillReservedPool(deltaGrow);
+                PrivFillReservedPool(deltaGrow);
             }
 
             // Always take from the reserve list
             NodeBase node = reserve.Pop();
             
             // Wash it
-            derivedWash(node);
+            DerivedWash(node);
 
             // Update stats
             numActive++;
@@ -72,7 +72,7 @@ namespace CCintron.Pooling
             return node;
         }
 
-        private void privFillReservedPool(int count)
+        private void PrivFillReservedPool(int count)
         {
             totalNodes += count;
             numReserved += count;
@@ -80,13 +80,13 @@ namespace CCintron.Pooling
             // Preload the reserve
             for (int i = 0; i < count; i++)
             {
-                NodeBase node = derivedCreateNode();
-                derivedWash(node);
+                NodeBase node = DerivedCreateNode();
+                DerivedWash(node);
                 reserve.Push(node);
             }
         }
 
-        abstract protected NodeBase derivedCreateNode();
-        abstract protected void derivedWash(NodeBase node);
+        abstract protected NodeBase DerivedCreateNode();
+        abstract protected void DerivedWash(NodeBase node);
     }
 }
