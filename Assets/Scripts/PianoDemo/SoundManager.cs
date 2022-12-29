@@ -33,6 +33,7 @@ namespace CCintron.PianoDemo
             if(prefab == null) prefab = (GameObject)Resources.Load("Prefabs/SoundEffect");
 
             NodeBase node = Object.Instantiate(prefab).GetComponent<NodeBase>();
+            node.gameObject.SetActive(false);
             return node;
         }
 

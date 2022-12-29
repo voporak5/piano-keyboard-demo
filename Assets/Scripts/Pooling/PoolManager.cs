@@ -81,7 +81,6 @@ namespace CCintron.Pooling
             for (int i = 0; i < count; i++)
             {
                 NodeBase node = DerivedCreateNode();
-                DerivedWash(node);
                 reserve.Push(node);
             }
         }

@@ -8,7 +8,6 @@ namespace CCintron.PianoDemo
     public class SoundEffect : NodeBase
     {
         private AudioSource mAudioSource;
-        private bool isActive;
 
         private void Awake()
         {
@@ -17,19 +16,13 @@ namespace CCintron.PianoDemo
 
         private void Update()
         {
-            if (isActive == false) return;
-
-            if(mAudioSource.isPlaying == false)
-            {
-                SoundManager.Remove(this);
-            }
+            if(mAudioSource.isPlaying == false) SoundManager.Remove(this);
         }
 
         public override void Wash()
         {
             mAudioSource.time = 0;
             mAudioSource.clip = null;
-            isActive = false;
             gameObject.SetActive(false);
         }
 
@@ -38,7 +31,6 @@ namespace CCintron.PianoDemo
             mAudioSource.clip = SoundLibrary.GetSoundEffect(soundEffectType);
             gameObject.SetActive(true);
             mAudioSource.Play();
-            isActive = true;
         }
     }
 }
