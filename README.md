@@ -6,6 +6,10 @@ the keyboard
 
 I modified what I learned from my Architecture of Realtime Systems class at DePaul
 about object pooling and applied it into Unity
+
+Here is the link to the YouTube recording showcasing the project
+https://youtu.be/7X_mWTTFwj4
+
 ## Acknowledgements
 
 Thanks Patrick for recording some piano sounds for the whole world to use freely.
